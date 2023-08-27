@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'HR Branch',
-    'author': 'GUK',
-    'website': 'http://www.guk.com',
+    'author': 'Hira',
+    'website': 'http://www.hira.com',
     'sequence': 11,
     'depends': [
         'base',
