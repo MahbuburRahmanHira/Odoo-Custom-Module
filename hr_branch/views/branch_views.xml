@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Search View -->
+        <record id="branch_search_view" model="ir.ui.view">
+            <field name="name">branch.search.view</field>
+            <field name="model">res.branch</field>
+            <field name="arch" type="xml">
+                <search string="Branch Names">
+                    <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+                    <field name="code" string="Code" filter_domain="[('code','ilike',self)]"/>
+                    <field name="region_id" string="Region" filter_domain="[('region_id','ilike',self)]"/>
+                    <field name="zone_id" string="Zone" filter_domain="[('zone_id','ilike',self)]"/>
+                    <field name="area_id" string="Area" filter_domain="[('area_id','ilike',self)]"/>
+                    <field name="company_id" string="Company" filter_domain="[('company_id','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="branch_tree_view" model="ir.ui.view">
+            <field name="name">branch.tree.view</field>
+            <field name="model">res.branch</field>
+            <field name="priority" eval="7" />
+            <field name="arch" type="xml">
+                <tree string="Branch Names">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="region_id"/>
+                    <field name="zone_id"/>
+                    <field name="area_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form View -->
+        <record id="branch_form_view" model="ir.ui.view">
+            <field name="name">branch.form.view</field>
+            <field name="model">res.branch</field>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+                <form string="Branch Name">
+                    <header>
+                        <field name="active" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="program_type"/>
+                                <field name="email"/>
+                                <field name="address"/>
+                            </group>
+                            <group>
+                                <field name="area_id"/>
+                                 <field name="zone_id"/>
+                                <field name="region_id"/>
+                                <field name="mobile"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Action -->
+        <record id="action_branch_view" model="ir.actions.act_window">
+            <field name="name">Branch Name</field>
+            <field name="res_model">res.branch</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="branch_tree_view"/>
+        </record>
+
+
+
+        <menuitem id="hr_branch_menu_root" name="Branch Configure" />
+        <menuitem id="hr_branch_menu_main" name="Branch"
+                  action="action_branch_view" parent="hr_branch_menu_root" sequence="1"/>
+
+    </data>
+</odoo>

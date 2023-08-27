@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+hr_branch.access_res_branch,access_res_branch,model_res_branch,base.group_user,1,1,1,1
+access.area,access_area,model_area,base.group_user,1,1,1,1
+access.region,access_region,model_region,base.group_user,1,1,1,1
+access.zone,access_zone,model_zone,base.group_user,1,1,1,1

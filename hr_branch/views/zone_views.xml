@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Search View -->
+        <record id="zone_search_view" model="ir.ui.view">
+            <field name="name">zone.search.view</field>
+            <field name="model">zone</field>
+            <field name="arch" type="xml">
+                <search string="Zone Names">
+                    <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+                    <field name="code" string="Code" filter_domain="[('code','ilike',self)]"/>
+                    <field name="region_id" string="Region" filter_domain="[('region_id','ilike',self)]"/>
+                    <field name="company_id" string="Company" filter_domain="[('company_id','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="zone_tree_view" model="ir.ui.view">
+            <field name="name">zone.tree.view</field>
+            <field name="model">zone</field>
+            <field name="priority" eval="7" />
+            <field name="arch" type="xml">
+                <tree string="Zone Names">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="region_id"/>
+                </tree>
+            </field>
+        </record>100
+
+
+        <!-- Form View -->
+        <record id="zone_form_view" model="ir.ui.view">
+            <field name="name">zone.form.view</field>
+            <field name="model">zone</field>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+                <form string="Zone Name">
+                    <header>
+                        <field name="active" invisible="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="region_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Action -->
+        <record id="action_zone_view" model="ir.actions.act_window">
+            <field name="name">Zone Name</field>
+            <field name="res_model">zone</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="zone_tree_view"/>
+        </record>
+
+        <menuitem name="Zone"
+            id="menu_action_zone"
+            parent="hr_branch_menu_root" action="action_zone_view"
+            sequence="3" />
+
+    </data>
+</odoo>

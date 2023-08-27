@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seq_ticket_management" model="ir.sequence">
+            <field name="name">Ticket</field>
+            <field name="code">ticket.management</field>
+            <field name="prefix">T</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="ticket_management_form_view" model="ir.ui.view">
+            <field name="name">ticket.management.form</field>
+            <field name="model">ticket.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button id="draft_button" name="action_draft" string="Draft" class="btn-primary" type="object"
+                                states="done"/>
+                        <button id="submit_button" name="action_submit" string="Submit" class="btn-primary"
+                                type="object"
+                                states="draft"/>
+                        <button id="back_to_assign_button" name="action_back_to_assign" string="Back to Assign"
+                                class="btn-primary" type="object"
+                                states="in_progress" groups="e_ticket.group_it_user"/>
+                        <button id="in_progress_button" name="action_progress" string="In Progress" class="btn-primary"
+                                type="object" states="submit"
+                                groups="e_ticket.group_it_manager,e_ticket.group_it_admin"/>
+                        <button id="done_button" name="action_done" string="Done" class="btn-primary" type="object"
+                                states="in_progress" groups="e_ticket.group_it_user"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="branch_name"/>
+                                <field name="member_id"/>
+                                <field name="category_name"/>
+                                <field name="description"/>
+                            </group>
+                            <group>
+                                <field name="time" attrs="{'readonly': ['|','|',('state', '=', 'draft'),('state', '=', 'in_progress'),('state', '=', 'done')],
+                                'invisible': [('state', '=', 'draft')]}"/>
+                                <field name="assign_to" attrs="{'readonly': ['|','|',('state', '=', 'draft'),('state', '=', 'in_progress'),('state', '=', 'done')],
+                                'invisible': [('state', '=', 'draft')]}" groups="e_ticket.group_it_manager,e_ticket.group_it_admin"/>
+                                <!--                                <field name="reject" attrs="{'readonly': ['|','|',('state', '=', 'draft'),('state', '=', 'submit'),('state', '=', 'done')]}"/>-->
+                                <field name="deadline" attrs="{'readonly': ['|','|',('state', '=', 'draft'),('state', '=', 'in_progress'),('state', '=', 'done')],
+                                'invisible': ['|',('state', '=', 'draft'),('state', '=', 'submit')]}"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="ticket_management_tree_view" model="ir.ui.view">
+            <field name="name">ticket.management.tree</field>
+            <field name="model">ticket.management</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="category_name"/>
+                    <field name="description"/>
+                    <field name="time"/>
+                    <field name="assign_to"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="ticket_management_action" model="ir.actions.act_window">
+            <field name="name">E-Ticket Management</field>
+            <field name="res_model">ticket.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="ticket_menu_root" name="E-Ticket" web_icon="e_ticket,static/description/icon.png"
+                  sequence="1"/>
+        <menuitem id="ticket_menu_root_menu" name="E-Ticket" parent="ticket_menu_root"
+                  action="ticket_management_action" sequence="1"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_e_ticket_user,access.e.ticket.user,e_ticket.model_ticket_management,e_ticket.group_it_user,1,1,1,0
+access_e_ticket_manager,access.e.ticket.manager,e_ticket.model_ticket_management,e_ticket.group_it_manager,1,1,1,1
+access_e_ticket_admin,access.e.ticket.admin,e_ticket.model_ticket_management,e_ticket.group_it_admin,1,1,1,1
+
+access_ticket_category_user,access.ticket.category.user,e_ticket.model_ticket_category,e_ticket.group_it_user,1,0,0,0
+access_ticket_category_manager,access.ticket.category.manager,e_ticket.model_ticket_category,e_ticket.group_it_manager,1,1,1,1
+access_ticket_category,access.ticket.category,e_ticket.model_ticket_category,e_ticket.group_it_admin,1,1,1,1
