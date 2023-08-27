@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'E-Ticket Management',
-    'author': 'GUK',
-    'website': 'http://www.guk.com',
+    'author': 'Hira',
+    'website': 'http://www.hira.com',
     'sequence': 1,
     'depends': [
         'base',
