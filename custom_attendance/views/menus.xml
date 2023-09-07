@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="custom_attendance_management_menu_main"
+                  name="Attendance Request"
+                  parent="hr_attendance.menu_hr_attendance_root"
+                  sequence="100"
+        />
+        <menuitem id="custom_attendance_management_menu_main_sub"
+                  name="Attendance Request"
+                  parent="custom_attendance_management_menu_main"
+                  action="custom_attendance_management_action"
+                  sequence="1"
+        />
+
+    </data>
+</odoo>
